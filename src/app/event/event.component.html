@@ -1,1 +1,21 @@
-<p>event works!</p>
+<table class="table table-dark">
+  <thead>
+  <tr >
+    <th scope="col">id</th>
+    <th scope="col">date</th>
+    <th scope="col">lieu</th>
+    <th scope="col">name</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let event of events">
+    <td>{{event.id}}</td>
+    <td>{{event.dateEvt}}</td>
+    <td>{{event.lieu}}</td>
+    <td>{{event.nom}}</td>
+  </tr>
+
+  </tbody>
+</table>
+
+<div id="calendar"></div>

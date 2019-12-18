@@ -1,17 +1,31 @@
 import {NgModule} from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule, MatSortModule} from "@angular/material";
+import {
+  MatDatepickerModule,
+  MatFormFieldModule, MatInputModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatSortModule
+} from "@angular/material";
 
 @NgModule({
   imports: [
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 
