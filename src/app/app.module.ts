@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularMaterialModule } from './angular-material.module';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     DataTablesModule,
     AngularMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
