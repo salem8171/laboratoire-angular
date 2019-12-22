@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularMaterialModule } from './angular-material.module';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import {RatingModule} from "ng-starrating";
 
@@ -38,6 +39,7 @@ import {RatingModule} from "ng-starrating";
     DataTablesModule,
     AngularMaterialModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     RatingModule
   ],
   providers: [],
