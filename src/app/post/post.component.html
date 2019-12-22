@@ -1,30 +1,34 @@
-<div class="card my-2" *ngFor="let post of posts">
-  <div class="card-header">
-    Post
-  </div>
-  <div class="card-body">
-    <div class="row align-items-center">
-      <div class="col-6">
-        <h5 class="card-title">Special title treatment</h5>
-        <p><i class="fa fa-link"><a href="{{post.lien}}" class="ml-1">{{post.lien}}</a></i></p>
-        <p><i class="fa fa-file-pdf-o"> <a [href]="post.sourcePdf" class="ml-1">{{post.sourcePdf}}</a></i></p>
-        <p><i class="fa fa-calendar"> {{post.dateApparition}}</i></p>
-        <p><i class="fa fa-book"> {{post.type}}</i></p>
+<div class="row pt-5 mt-3 mb-5 justify-content-center">
+  <div class="col-md-11 col-xl-9 p-2">
+    <div class="card my-2" *ngFor="let post of posts">
+      <div class="card-header">
+        Post
       </div>
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col-6">
+            <h5 class="card-title">Special title treatment</h5>
+            <p><i class="fa fa-link"><a href="{{post.lien}}" class="ml-1">{{post.lien}}</a></i></p>
+            <p><i class="fa fa-file-pdf-o"> <a [href]="post.sourcePdf" class="ml-1">{{post.sourcePdf}}</a></i></p>
+            <p><i class="fa fa-calendar"> {{post.dateApparition}}</i></p>
+            <p><i class="fa fa-book"> {{post.type}}</i></p>
+          </div>
 
-      <div class="col-6">
-        <div style="text-align:center">
-          <h1>
-            Rate
-          </h1>
-          <star-rating value="3" totalstars="5" checkedcolor="gold" uncheckedcolor="black" size="24px" readonly="false"
-                       (rate)="onRate($event)"></star-rating>
+          <div class="col-6">
+            <div style="text-align:center">
+              <h1>
+                Rate
+              </h1>
+              <star-rating value="3" totalstars="5" checkedcolor="gold" uncheckedcolor="black" size="24px"
+                readonly="false" (rate)="onRate($event)"></star-rating>
+            </div>
+          </div>
+
         </div>
       </div>
-
+      <div class="card-footer text-muted">
+        {{post.dateApparition|timeAgo}}
+      </div>
     </div>
-  </div>
-  <div class="card-footer text-muted">
-    {{post.dateApparition|timeAgo}}
   </div>
 </div>
