@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularMaterialModule } from './angular-material.module';
 import { HomeComponent } from './home/home.component';
+import {TimeAgoPipe} from 'time-ago-pipe';
+import {RatingModule} from "ng-starrating";
 
 
 @NgModule({
@@ -27,14 +29,16 @@ import { HomeComponent } from './home/home.component';
     ProfileComponent,
     SignupComponent,
     PostComponent,
-    HomeComponent
+    HomeComponent,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     DataTablesModule,
     AngularMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RatingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
