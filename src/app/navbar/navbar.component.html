@@ -19,32 +19,37 @@ mx-auto text-center py-3 mb-4 bottom-border">
           </div>
           <ul class="navbar-nav flex-column mt-4">
             <li class="nav-item">
-              <a routerLink="/" class="nav-link text-white p-3 mb-2 current " [ngClass]="{'current':current=='home'}" (click)="current='home'">
+              <a routerLink="/" class="nav-link text-white p-3 mb-2 current " [ngClass]="{'current':current=='home'}"
+                 (click)="current='home'">
 
                 <i class="fa fa-home text-light fa-lg mr-3" aria-hidden="true"></i>Home
               </a>
 
             </li>
             <li class="nav-item">
-              <a routerLink="post" class="nav-link text-white p-3 mb-2 sidebar-link" [ngClass]="{'current':current=='post'}" (click)="current='post'">
+              <a routerLink="post" class="nav-link text-white p-3 mb-2 sidebar-link"
+                 [ngClass]="{'current':current=='post'}" (click)="current='post'">
                 <i class="fa fa-file text-light fa-lg mr-3" aria-hidden="true"></i>Posts
               </a>
 
             </li>
             <li class="nav-item">
-              <a routerLink="event" class="nav-link text-white p-3 mb-2 sidebar-link" [ngClass]="{'current':current=='event'}" (click)="current='event'">
+              <a routerLink="event" class="nav-link text-white p-3 mb-2 sidebar-link"
+                 [ngClass]="{'current':current=='event'}" (click)="current='event'">
                 <i class="fa fa-calendar text-light fa-lg mr-3" aria-hidden="true"></i>Events
               </a>
 
             </li>
             <li class="nav-item">
-              <a routerLink="student" class="nav-link text-white p-3 mb-2 sidebar-link" [ngClass]="{'current':current=='student'}" (click)="current='student'">
+              <a routerLink="student" class="nav-link text-white p-3 mb-2 sidebar-link"
+                 [ngClass]="{'current':current=='student'}" (click)="current='student'">
                 <i class="fa fa-user text-light fa-lg mr-3" aria-hidden="true"></i>Students
               </a>
 
             </li>
             <li class="nav-item">
-              <a routerLink="professor" class="nav-link text-white p-3 mb-2 sidebar-link" [ngClass]="{'current':current=='professor'}" (click)="current='professor'">
+              <a routerLink="professor" class="nav-link text-white p-3 mb-2 sidebar-link"
+                 [ngClass]="{'current':current=='professor'}" (click)="current='professor'">
                 <i class="fa fa-user-o text-light fa-lg mr-3" aria-hidden="true"></i>Professors
               </a>
 
