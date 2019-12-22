@@ -16,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import {TimeAgoPipe} from 'time-ago-pipe';
+import {RatingModule} from "ng-starrating";
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileComponent,
     SignupComponent,
     PostComponent,
-    HomeComponent
+    HomeComponent,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
     DataTablesModule,
     AngularMaterialModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    RatingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
