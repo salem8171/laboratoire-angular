@@ -1,0 +1,78 @@
+<mat-toolbar style="background:none">
+
+  <button class="btn btn-outline-secondary" mat-stroked-button (click)="onClose()" tabIndex="-1" style="left: 94%;">
+    <i class="fa fa-times"></i></button>
+</mat-toolbar>
+
+<div class="col-12 grid-margin">
+  <div class="card border-0" >
+    <div class="card-body">
+      <h4 class="card-title">Add Post</h4>
+      <form class="form-sample" [formGroup]="post" (submit)="add()">
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Date</label>
+              <div class="col-sm-9">
+
+                <mat-form-field class="example-full-width">
+                  <input matInput [matDatepicker]="picker" placeholder="Choose a date of post" value="" formControlName="dateApparition">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Lien</label>
+              <div class="col-sm-9">
+
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Choose a lien of post" value="" formControlName="lien">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Source</label>
+              <div class="col-sm-9">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Choose a source of post" value="" formControlName="source">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Type</label>
+              <div class="col-sm-9">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Choose a type of post" value="" formControlName="type">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-6">
+            <button class="btn btn-outline-secondary" style="width: 30%" type="submit">
+             Add
+            </button>
+
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+

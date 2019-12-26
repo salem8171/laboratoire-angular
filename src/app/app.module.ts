@@ -18,6 +18,8 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import {RatingModule} from "ng-starrating";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { AddPostComponent } from './add-post/add-post.component';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import {RatingModule} from "ng-starrating";
     SignupComponent,
     PostComponent,
     HomeComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,
@@ -40,10 +43,13 @@ import {RatingModule} from "ng-starrating";
     AngularMaterialModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RatingModule
+    RatingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  entryComponents:[AddPostComponent]
 })
 export class AppModule { }

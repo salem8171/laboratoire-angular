@@ -1,27 +1,55 @@
 <div class="row pt-5 mt-3 mb-5 justify-content-center">
   <div class="col-md-11 col-xl-9 p-2">
-    <h1>Upcoming Events list</h1>
-    <table class="table table-dark">
-      <thead>
-        <tr>
-          <th scope="col">id</th>
-          <th scope="col">date</th>
-          <th scope="col">lieu</th>
-          <th scope="col">name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let event of events">
-          <td>{{event.id}}</td>
-          <td>{{event.dateEvt}}</td>
-          <td>{{event.lieu}}</td>
-          <td>{{event.nom}}</td>
-        </tr>
+    <div class="row">
+      <div class="col-md-7 mr-2">
+        <h1>Upcoming Events list</h1>
+        <table class="table table-dark">
+          <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">date</th>
+            <th scope="col">lieu</th>
+            <th scope="col">name</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let event of events">
+            <td>{{event.id}}</td>
+            <td>{{event.dateEvt|date:'yyyy-MM-dd'}}</td>
+            <td>{{event.lieu}}</td>
+            <td>{{event.nom}}</td>
+          </tr>
 
-      </tbody>
-    </table>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-4">
+        <h1>Add Event</h1>
+        <form [formGroup]="eventForm" class="example-form" (ngSubmit)="addEvent()">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Choose a name of event" value="" formControlName="nom">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Choose a place of event" value="" formControlName="lieu">
+          </mat-form-field>
 
-    <h1>Events calendar</h1>
-    <div id="calendar"></div>
+          <mat-form-field>
+
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date of event" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <button type="submit" class="btn btn-outline-dark btn-block" >
+            Add Event
+          </button>
+
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <h1>Events calendar</h1>
+      <div id="calendar"></div>
+    </div>
+
   </div>
 </div>
