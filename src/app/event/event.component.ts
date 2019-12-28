@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {EventService} from "../services/event.service";
+import {EventService} from '../services/event.service';
 
 declare var $: any;
 
@@ -20,7 +20,7 @@ export class EventComponent implements OnInit {
   ngOnInit() {
     this.getEvents();
     setTimeout(() => {
-      $("#calendar").fullCalendar({
+      $('#calendar').fullCalendar({
         header: {
           left: 'prev,next today',
           center: 'title',

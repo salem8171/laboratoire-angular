@@ -6,7 +6,7 @@ import {
   MatNativeDateModule,
   MatPaginatorModule,
   MatSortModule
-} from "@angular/material";
+} from '@angular/material';
 
 @NgModule({
   imports: [
