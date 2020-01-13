@@ -22,6 +22,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AddPostComponent } from './add-post/add-post.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { LoginComponent } from './login/login.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 
 
@@ -49,7 +50,8 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     RatingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TabsModule.forRoot()
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

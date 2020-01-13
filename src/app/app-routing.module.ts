@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'post', component: PostComponent },
   { path: 'event', component: EventComponent },
   { path: 'profile/:id', component: ProfileComponent },
+  {path: 'register', component:SignupComponent},
   { path: 'login', component: LoginComponent },
   { path: "signup", component: SignupComponent }
 ];
