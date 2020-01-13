@@ -7,6 +7,8 @@ import {ProfileComponent} from "./members/profile/profile.component";
 import {PostComponent} from "./post/post.component";
 import {AppComponent} from "./app.component";
 import {HomeComponent} from "./home/home.component";
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
@@ -15,6 +17,7 @@ const routes: Routes = [
   {path: 'professor', component: ProfessorComponent},
   {path: 'post', component: PostComponent},
   {path: 'event', component: EventComponent},
+  {path: 'register', component:SignupComponent},
   {path: 'profile/:id', component: ProfileComponent}
 ];
 

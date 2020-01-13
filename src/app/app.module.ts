@@ -18,6 +18,8 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import {RatingModule} from "ng-starrating";
+import { LoginComponent } from './login/login.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import {RatingModule} from "ng-starrating";
     SignupComponent,
     PostComponent,
     HomeComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,9 @@ import {RatingModule} from "ng-starrating";
     AngularMaterialModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RatingModule
+    RatingModule,
+    TabsModule.forRoot()
+  
   ],
   providers: [],
   bootstrap: [AppComponent],
