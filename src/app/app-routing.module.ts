@@ -8,7 +8,6 @@ import {PostComponent} from "./post/post.component";
 import {AppComponent} from "./app.component";
 import {HomeComponent} from "./home/home.component";
 import { SignupComponent } from './signup/signup.component';
-import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
