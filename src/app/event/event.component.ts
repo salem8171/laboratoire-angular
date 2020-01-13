@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {EventService} from '../services/event.service';
+import {EventService} from "../services/event.service";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 declare var $: any;
 
@@ -12,13 +13,21 @@ export class EventComponent implements OnInit {
   events: any;
   calendarEvents = [];
   title = 'easyfullcalendar';
+  eventForm: FormGroup;
 
-
-  constructor(private eventService: EventService) {
+  constructor(private eventService: EventService, private formBuilder: FormBuilder) {
+    this.eventForm = formBuilder.group(
+      {
+        date: Date,
+        lieu: String,
+        nom: String
+      }
+    );
   }
 
   ngOnInit() {
     this.getEvents();
+    this.getCalendarEvents();
     setTimeout(() => {
       $('#calendar').fullCalendar({
         header: {
@@ -55,11 +64,21 @@ export class EventComponent implements OnInit {
 
   getEvents() {
     this.events = this.eventService.getEvents();
-    console.log(this.events);
-    for (let event of this.events) {
-      this.calendarEvents.push({title: event.nom, start: event.dateEvt, color: "#019efb"});
-    }
-    console.log(this.calendarEvents);
 
+
+  }
+
+  getCalendarEvents() {
+    this.calendarEvents = this.eventService.calendarEvent();
+  }
+
+  addEvent() {
+    let event = {
+      id: 4,
+      dateEvt: this.eventForm.get("date").value,
+      lieu: this.eventForm.get("lieu").value,
+      nom: this.eventForm.get("nom").value
+    };
+    this.eventService.addEvent(event);
   }
 }

@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {PostService} from "../services/post.service";
 import {StarRatingComponent} from "ng-starrating";
+import {MDCRipple} from '@material/ripple';
+import {MatDialog, MatDialogConfig} from "@angular/material";
+import {AddPostComponent} from "../add-post/add-post.component";
 
 @Component({
   selector: 'app-post',
@@ -11,7 +14,7 @@ export class PostComponent implements OnInit {
 
   posts: any;
 
-  constructor(private postService: PostService) {
+  constructor(private postService: PostService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -29,4 +32,11 @@ export class PostComponent implements OnInit {
       Unchecked Color: ${$event.starRating.uncheckedcolor}`);
   }
 
+  addPost() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.width = '60%';
+
+    this.dialog.open(AddPostComponent, dialogConfig);
+  }
 }

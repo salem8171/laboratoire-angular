@@ -59,14 +59,19 @@ mx-auto text-center py-3 mb-4 bottom-border">
         <!-- end sidebar -->
         <!-- top nav -->
         <div class="col-xl-10 col-lg-9 col-md-10 ml-auto bg-dark fixed-top py-2 top-navbar">
+          
           <div class="row align-items-center">
             <div class="col-md-4">
               <h4 class="text-light text-uppercase mb-0">Welcome</h4>
+
+            
             </div>
+            
             <div class="col-md-5">
+              
               <form>
-                <div class="input-group">
-                  <input type="text" class="form-control search-input" placeholder="Search...">
+                <div class="input-group">    
+                   <input type="text" class="form-control search-input" placeholder="Search...">
                   <button type="button" class="btn btn-white search-button">
                     <li class="fa fa-search text-danger"></li>
                   </button>
@@ -85,9 +90,14 @@ mx-auto text-center py-3 mb-4 bottom-border">
                     <i class="fa fa-bell text-muted fa-lg"></i>
                   </a>
                 </li>
-                <li class="nav-item ml-auto">
-                  <a href="#" class="nav-link">
+                <li class="nav-item ml-auto" *ngIf="!isLoggedIn">
+                  <a routerLink="login" class="nav-link">
                     <i class="fa fa-sign-in text-danger fa-lg"></i>
+                  </a>
+                </li>
+                <li class="nav-item ml-auto" *ngIf="isLoggedIn">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-sign-out text-danger fa-lg" (click)="logout()"></i>
                   </a>
                 </li>
               </ul>
