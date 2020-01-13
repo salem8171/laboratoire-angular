@@ -85,9 +85,14 @@ mx-auto text-center py-3 mb-4 bottom-border">
                     <i class="fa fa-bell text-muted fa-lg"></i>
                   </a>
                 </li>
-                <li class="nav-item ml-auto">
-                  <a href="#" class="nav-link">
+                <li class="nav-item ml-auto" *ngIf="!isLoggedIn">
+                  <a routerLink="login" class="nav-link">
                     <i class="fa fa-sign-in text-danger fa-lg"></i>
+                  </a>
+                </li>
+                <li class="nav-item ml-auto" *ngIf="isLoggedIn">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-sign-out text-danger fa-lg" (click)="logout()"></i>
                   </a>
                 </li>
               </ul>

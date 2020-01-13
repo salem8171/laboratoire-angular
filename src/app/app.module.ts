@@ -20,6 +20,9 @@ import {TimeAgoPipe} from 'time-ago-pipe';
 import {RatingModule} from "ng-starrating";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AddPostComponent } from './add-post/add-post.component';
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { LoginComponent } from './login/login.component';
+
 
 
 @NgModule({
@@ -34,7 +37,8 @@ import { AddPostComponent } from './add-post/add-post.component';
     PostComponent,
     HomeComponent,
     TimeAgoPipe,
-    AddPostComponent
+    AddPostComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,7 @@ import { AddPostComponent } from './add-post/add-post.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents:[AddPostComponent]
