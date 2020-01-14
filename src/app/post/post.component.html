@@ -3,7 +3,7 @@
     <button class="btn btn-danger btn-circle" (click)="addPost()">
      <i class="la la-plus"></i>
     </button>
-    <div class="card my-2" *ngFor="let post of posts">
+    <div class="card my-2" *ngFor="let post of posts | async">
       <div class="card-header">
         Post
       </div>
@@ -12,9 +12,10 @@
           <div class="col-6">
             <h5 class="card-title">Special title treatment</h5>
             <p><i class="fa fa-link"><a href="{{post.lien}}" class="ml-1">{{post.lien}}</a></i></p>
-            <p><i class="fa fa-file-pdf-o"> <a [href]="post.sourcePdf" class="ml-1">{{post.sourcePdf}}</a></i></p>
+            <!-- <p><i class="fa fa-file-pdf-o"> <a [href]="post.sourcePdf" class="ml-1">{{post.sourcePdf}}</a></i></p> -->
             <p><i class="fa fa-calendar"> {{post.dateApparition}}</i></p>
             <p><i class="fa fa-book"> {{post.type}}</i></p>
+            <p><i class="fa fa-user"> {{post.auteur.nom}} {{post.auteur.prenom}}</i></p>
           </div>
 
           <div class="col-6">
@@ -23,7 +24,7 @@
                 Rate
               </h1>
               <star-rating value="3" totalstars="5" checkedcolor="gold" uncheckedcolor="black" size="24px"
-                readonly="false" (rate)="onRate($event)"></star-rating>
+                readonly="true" (rate)="onRate($event)"></star-rating>
             </div>
           </div>
 

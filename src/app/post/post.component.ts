@@ -4,6 +4,7 @@ import {StarRatingComponent} from "ng-starrating";
 import {MDCRipple} from '@material/ripple';
 import {MatDialog, MatDialogConfig} from "@angular/material";
 import {AddPostComponent} from "../add-post/add-post.component";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -12,7 +13,7 @@ import {AddPostComponent} from "../add-post/add-post.component";
 })
 export class PostComponent implements OnInit {
 
-  posts: any;
+  posts: Observable<any>;
 
   constructor(private postService: PostService, private dialog: MatDialog) {
   }
@@ -23,6 +24,9 @@ export class PostComponent implements OnInit {
 
   getPosts() {
     this.posts = this.postService.getPosts();
+    this.posts.subscribe(posts => {
+      console.log(posts[0]);
+    });
   }
 
   onRate($event: { oldValue: number, newValue: number, starRating: StarRatingComponent }) {

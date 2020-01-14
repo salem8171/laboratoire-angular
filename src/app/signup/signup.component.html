@@ -9,7 +9,7 @@
         <h1 class="text-center pb-4 pt-3">
           <span class="text-primary"><i class="fa fa-lock"></i> Laboratory Register</span> Register
         </h1>
-        <form (submit)="onSubmit()">
+        <!--<form (submit)="onSubmit()">
           <div class="form-group">
             <label for="email">Email</label>
             <input type="email" name="email" class="form-control" required>
@@ -19,7 +19,72 @@
               <input type="password" name="password" class="form-control" required>
           </div>
           <input type="submit" value="Register" class="btn btn-primary btn-block">
-        </form>
+        </form>-->
+        <form class="ibox-body" id="login-form" [formGroup]="registreForm" (ngSubmit)="registre()">
+          <h4 class="font-strong text-center mb-5">SIGNUP</h4>
+          <div class="form-group mb-4">
+            <input class="form-control form-control-line" type="text" name="FirstName" placeholder="FirstName"
+            formControlName="FirstName">
+            <div *ngIf="registreForm.controls.FirstName.touched && registreForm.controls.FirstName.invalid" class="invalid-feedback d-block">Please provide a
+                FirstName
+              </div>
+        </div>
+        <div class="form-group mb-4">
+          <input class="form-control form-control-line" type="text" name="LastName" placeholder="LastName"
+          formControlName="LastName">
+          <div *ngIf="registreForm.controls.LastName.touched && registreForm.controls.LastName.invalid" class="invalid-feedback d-block">Please provide a
+            LastName
+            </div>
+      </div>
+      <div class="form-group mb-4">
+        <input class="form-control form-control-line" type="text" name="CIN" placeholder="CIN"
+        formControlName="CIN">
+        <div *ngIf="registreForm.controls.CIN.touched && registreForm.controls.CIN.invalid" class="invalid-feedback d-block">Please provide a
+          CIN
+          </div>
+    </div>
+    <div class="form-group mb-4">
+      <input class="form-control form-control-line"  name="DateNais" placeholder="yyyy-MM-dd"
+      formControlName="DateNais" ngbDatepicker #d="ngbDatepicker">
+      <div *ngIf="registreForm.controls.DateNais.touched && registreForm.controls.DateNais.invalid" class="invalid-feedback d-block">Please provide a
+        Date Of Birthday
+        </div>
+  </div>
+          <div class="form-group mb-4">
+              <input class="form-control form-control-line" type="text" name="email" placeholder="Email"
+              formControlName="email">
+              <div *ngIf="registreForm.controls.email.touched && registreForm.controls.email.invalid" class="invalid-feedback d-block">Please provide a
+                  email
+                </div>
+          </div>
+          <div class="form-group mb-4">
+            <input class="form-control form-control-line" type="file" name="photo" (change)="onFileChanged($event)"
+            formControlName="photo">
+            
+        </div>
+          <div class="form-group mb-4">
+              <input class="form-control form-control-line" type="password" name="password" placeholder="Password"
+              formControlName="password">
+              <div *ngIf="registreForm.controls.password.touched && registreForm.controls.password.invalid" class="invalid-feedback d-block">Please provide a
+                  password
+                </div>
+          </div>
+          <div class="form-group mb-4">
+            <label class="radio radio-primary">
+                <input type="radio" value="student" name="role" formControlName="role">
+                <span class="input-span"></span>Student</label>
+        </div>
+        <div class="form-group mb-4">
+            <label class="radio radio-success">
+                <input type="radio" value="professor" name="role" formControlName="role">
+                <span class="input-span"></span>Professor</label>
+        </div>
+          
+          <div class="text-center mb-4">
+              <button class="btn btn-primary btn-rounded btn-block">SIGNUP</button>
+          </div>
+          
+      </form>
       </div>
     </div>
   </div>

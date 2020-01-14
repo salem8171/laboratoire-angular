@@ -23,7 +23,8 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { LoginComponent } from './login/login.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -51,7 +52,9 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     RatingModule,
     FormsModule,
     ReactiveFormsModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    NgbModule,
+    ToastrModule.forRoot()
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

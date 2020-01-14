@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../models/student';
+import { HttpClient } from '@angular/common/http';
 
+const URL="http://localhost:8090/api/student";
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
 
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
 private students:Student[]=[
 
@@ -57,9 +59,9 @@ private students:Student[]=[
 
 
 ];
-public getAllStudents():Student[]
+public getAllStudents()
 {
-  return this.students;
+  return this.http.get(URL+'/all');
 
 }
 

@@ -1,4 +1,7 @@
 import {Injectable} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+const URL = "http://localhost:8090/api/event";
 
 @Injectable({
   providedIn: 'root'
@@ -10,21 +13,26 @@ export class EventService {
     {id: 3, dateEvt: "2019-12-19", lieu: 'tunis', nom: 'event3'}];
   calendarEvents = [];
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   getEvents() {
-    return this.events;
+    return this.http.get(URL + "/all");
   }
 
   addEvent(event) {
-    this.events.push(event);
+    console.log(event);
+    return this.http.post(URL + "/add", event);
   }
 
-  calendarEvent() {
-    for (let event of this.events) {
-      this.calendarEvents.push({title: event.nom, start: event.dateEvt, color: "#019efb"});
-    }
-    return this.calendarEvents;
+  deleteEvent(id: Number) {
+    this.http.delete(URL + "/delete/" + id);
   }
+
+  // calendarEvent() {
+  //   for (let event of this.events) {
+  //     this.calendarEvents.push({title: event.nom, start: event.dateEvt, color: "#019efb"});
+  //   }
+  //   return this.calendarEvents;
+  // }
 }

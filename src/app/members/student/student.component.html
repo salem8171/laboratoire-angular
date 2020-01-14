@@ -2,7 +2,7 @@
   <div class="col-md-12 col-xl-11 py-2">
     <div class="row">
       <div class="col-md-7 mr-2">
-        <table mat-table [dataSource]="ELEMENT_DATA" class="mat-elevation-z2" matSort>
+        <table mat-table [dataSource]="ELEMENT_DATA | async" class="mat-elevation-z2" matSort>
           <!-- Position Column -->
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
@@ -45,33 +45,30 @@
         <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4" *ngIf="Selectedstudent">
         <div class="card p-2">
           <img class="align-self-center img-thumbnail rounded-circle" width="200" height="200"
-               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAgVBMVEUAAAD////y8vL4+Pj19fX7+/vx8fGamprp6eng4OC3t7dNTU3S0tJ1dXW0tLTt7e2UlJTa2toNDQ3CwsI+Pj7Ly8uJiYlUVFRhYWHNzc2qqqocHBwxMTF4eHh/f3/j4+MoKChsbGwWFhZGRkalpaU0NDRdXV1nZ2eWlpYhISEqKipB8dIxAAANaklEQVR4nNWdiXKjOBRFwSDb8RJvibd0OnHWTv7/A5sdAW+TDeb5Vk3VzISSdZDQ+nTl+bBMJuTPrs85Jhf9y+p4ero8uegfD/lTkIpLIXuMBXRILkprPJk/eZEu/tn4HcCpBO0CBrLnTPJIOPlee6nuLvvZtJhBQoccSV6EPDnjr569UptLk4sFEQZhKi6J7DEWUJhcYMLNzrM1uSi5IEUECMN+AE14fPCqur8guShjCSJQS4WA+S+F9GPS5Hx/8sera4Qnx7zX5PWnNblOaMJBIhZwkD3H5FuYnP/43uDzvC2W3EACGCP6DcIccNAuIJfceA/wAYRSwChjRUHXCPsBvAf5mrVUDpggpo9VCXsBNN8IoPcBJycBjBHT/6wQDtoFlCX3iPF53rHyYAY4lAEWubMJWwaUleAWB6z2Fm4lWObOIuwIkM7RFwFYGdOcC2gRtvwNit7XsNkH2rLGpY6Ag/J/5YTibmLYIuD4hwS06tfZJVgSupXgsJVvcPxEAzbr1xmAOWFH3QSZo4ApQe/dKTmrilYoUsIw7ASQTg4ap1W0rSXn/g3GSgiDjPCqreicA8wnT479YA0wIYynCVcHnLCA3tAhOaSK+glhkBFeFXDAA763AhgRmozwmt0E09OnSsbdl32Dsbx4ti+Z8AoBhY3yhgdM+vtLuolMOWHL/SCTo6C+XoFU0stLsCC86mwCnxDamrQDmBFed8JrQkERrlsCTAmvOVSLOyfJVzhq4xuM5RkpYEvdRJQcPqm3dHk3kcljtzdarqJxcgLAe+MIiD7hsYDtdhMRYChoZ3ZBW4DY3pOdo3araPQO4KXDilZhW4AcYQdVNByvWcCPoDVAhrDloVqSnKCSPvvtAdKEHZRg9NAzB7h3q6JM7ijCtodqWYZ2DOD7ImyvBEnC9lvRRNxnuBu2CgjukFZz1DJgcEcDfoXtAuKEHXQTaXJHEvDvwAlQsLGMEXYGSC7je8cWuwk/2fLHCFueLtnJEYPSPzPTNiBG2FEjkySHz5y2g1a7iWgSgxJ2V0UjYXy/h9YG29nPhihhh1XURwlHfnuD7UR5rAJA2MVQrUwOnjptBy3N6AuFA5Sw0yrq+2OAb7loYV20kbuEEIin6RjQb3b4y1CenANgQgjE03QN6K+qeF8bl+TEVXSYEgLRl50DVginH4tKcuduvsC5y9ZIq4TdA/ovOd7pfuyYnHSolsdhAfE0VwD0Fwndx8o9ObcSLJKzCdvuB8Fex0xmNZIuvkErOYuwo+lSSxXizBK0CbuZ0fcEaLVZBWG3QzUuRxbg8PG4ne+nD6+fu9N29LFZVH7WObmC8IIqOnjZfGxP04ffp7ffh+l8eZwtitgHN8BwtYQWcaZ/R5uXIAjPAswJz918udtsd2/NPL2fJi8mcAMcTPZUfM1ueWCD88EanxIWkcFOSaxGxC7ZenccM6nZ72tz4teJP0cLd8CU0JxRp4L7XzZL7/fkWy9e6+CDTSrTfkYkN4QAE0KTRZtIG5koieFSmKUtciqkAAzCAx9ZY781+BAG3ih78XpUSigvwWDEV6lCOyRLyU+axZENjWokCJYj2uuU0SbyRmbiwBfr6d8QSi6avT06FV+hZzR3wNjd89NYDHEV9ceCUJiGTo+1n45+dLUFWmGh6vWCGDcU8TQMYNEq0Au6uN7mG6s3Gz9up2fjxZoPgdyBA6OcUAgYnC7I1dtuuTmsXmabJdSHuuqxkTt4epkScmeX8nXMGRfzek0VpzGQbsImFAIaSaDPFTU3du6wsXtCKAQc9Y1U18OQB4wJhaO94G/fQE39jPnZFx9Pk6UQntd1da1VQDQyGaGwBHUCet4hIEuQj6fRDuh5s4BeIGAI80aG3NbsV293dGdHE+ZDUXWtqK0fetZIEirtB+t6pxhIwnyoxkRP9K+/ZxLmgIPXvglYYbNin4ynybtSKrRAiaBz+zkgTlgAitdQ+tIffKHEx6NNSkBoz1aVvvG+whDxNPmM3hDBITq0xAvQ4NEm1pqM6p7QaxxorwLihOV4/YX/jV5FNaJ4tIm9+aK8HSXWhw0RT2OttRNuABq0ama+BESjTSpTSu6kbr+iSnCQxdMAYxobUPd49BEgswBz7486YWVRQHURUgOZQUboNwkHNuC5i79XUdOdpwaYm5sQ7i2G3z7rT3sWsIiFRAElp6170xO+SE+5t9S2sJ23va6oAw+YL7EB7hrZn1b87/QmfDDajAzD3TX0rq55nyygFStSENajLIK+MQihXT0Ufoq6tyhuZ4AtYBwQd28RHIPsSWtgzxwHzAiDxkGHheNe/RX1zwmw6t5irQcorqRugBX3FnvBQ29LihShxL3FBjS0CVefgkczzu4telfY4PVt4pQC4t6id1oBzuupYxiIewt7GrkvPbgCYu4taj9DwJaWOUiDuLf0DYIKWMFnTgrB7i1q5xU/zoCIe4va/n7uDIjE06jdb2osP/GH2eBoE7VNaT10XHBaDx7lccYOvckdECHU2ln8ugMihJqCLG19uwMidyNonRxWVqCEJ2ZBwkXfJJjs/VDpkWCQUO2+qNVZSAHhPWC1Q5qSUAwIE876JsFUEIoBkX18tYS5Db0c8EYJpYC4e8uhbxJMRzdAPNpEbYDCPzdAnFDivtmL5m6AqHtLqLYMPx0AKfeWUO136DkAUu4todq21AvkgJR7S6h2TONtQjEgEk+T/klvYPcokACmh9nA25CySqB3a21qJIApBeXeonYG7K2Hwio6YNxbtK5ieN5jKCxBxr3lsjO6XWrEHSZsHChtuLcksUSXnPbtVlOaDziOCLu3SB0TehBttpGVoO1gAru3KA4shTafGvUQcG+phbupHXrT1dTBvUVvl09V07BaTDZh072lbwxCaOgsYpOEuLf0jUEJ6S5CxLITcW85x93jWoKPyaBGV4h7i+LuwvtDAAJGV4h7i9pN4FjARchYFfVR9xa9EUOR/jS+RMqLDXFvCdXOn2LVv8Sz3FvU7gInqhYibXyMubcotPmwVAluY+wCMfcWvYFtiaxIb6KRKQih/693MSpR2diw3tyYe4vepZpU+diNN3xE3Vs0n5iJlXlIkxZRKSH2B8VuJqnGPtvI0IRq9y5yfZqiHyS92PA7SvomYPUlc5XFfTG0f4ie9y3yJMUJtXsNRHo2PCBBqHcDqtRzwAJS7i19Z1+iPQtIuLcEyv0UUk1pe2jSvSW4gQ8x0hN+YJa8DSlUvU9aFb5GzLq3aLemyfUFj9l495ZA83JURU+QvwLl3pIvgN9KNY303jgOJXFvCdQ7KNmav9QAWfeWeFlH7bELUN8zYwOK3FvURkMjKjZtxO4tN1VNoza1AojchlTbgVO8UwroUAGEb0OqbzFK7pdWo7cqYG6NAbq3lD2oXt+BpkZVwDwqBXJvuY1j+Q0tQEDIvcUeAwWvfedbrDlURSuEsDH2zYzc0mVwiXtLbRR7M13iOwLYcG9pDNP1hkdVNUEA6+4tzXnIjQy/1xgg6t5SSv+qYqx/zu4tpW6jwwid3VtKmde+cy/QlnRvMYB7i61bWJEa4zfelfE06AbVDXQYc+JKvzwWg9qBU7/R5q2IWydzQup6gWHfAJz2Pg6YE9JXzWgvxAN1zgRxb6lK+Zc4NQQg4t5SlQl0F+IsJAAR95Yq4CAct3DHVmf6pk8K8bchxVVA9S5NWoSEe4sAMJJe0+QTcxSKuysoAwz0jk6TvtDZvaUOOAjVTjHmhgZkCK3hrNYDCi91u0AnwspV0TpXbJbBWe4tEKBvPvumAfQ7PM+9pQqYj3g0xoFNgvPcW4ASjKVvUWrHA+KEwHXt+kLd7rgRNebeAgPq24rassMVPNqkbk6fSVcE/8+QB8QIwRL0tR00Ac7OVES4t2CAuo5eNl0i64AoIVJFE+k5h/HDBO0R7i20fYiarX3impkEEHdvwatoIi2fInELSwqIxtMwgFpW+XcsIObeInC40fApvtF3jxLuLWwJxlLwKRKXWeWAsHuLCNAPekeke8LsKBTk3iID9P27nt1dSF8Fyr1FChgG/cbx081o/ZyJRSgGjF5Pn2Mb4tZKANAidACMEPubZsiqqGUPUQfkZlz5jn9fh0xFjUzFHqIOSPNZQRu9VNQ1cTOuD5/Wy91bQifA5Fx4D83NlK5g4GG23L2l4f1BAWYN8eqMpf633fPyuDkcNh/Lk/MiM3n/NnbeMndvaVpjsIDRKNzt/sD18/HOvqspuNtsXZYoj1CeOMDUvSWxjWgaK2BJlBvGRn426m1ZH2nFM1QTrkavwhSo4z84YBpPkzpjsIDZe6jsiMtmGk9/mwPJ8rXO5oKD4w+0BRacu4wwcVXgtvLRJMa8t9t+Ary8SnLDI/dNPjPZQwHjeBqTIJ4J6HOnMn5H4ESnkdyKnJRxi04GzV28Q5oicoCZoOaaOCD1jExzDJTcBFus3NOzwTI5iCIpQ8OtrMI5KjUEC+Brgr03LLmXD6DOT5kmhsld/B1eDBhpcV9tVtenCf7iqeTGx+9KWMSeuFxclLukt2ABjaSgw8lo/rBevz7slpMx9axh0jPj++3+/eft82s7ieYB0twhz/0HEZ++DwZdVhoAAAAASUVORK5CYII=">
+               src="data:image/jpeg;base64,{{Selectedstudent.photo}}">
 
           <div class="card-body">
             <div>
               <strong>Name</strong>
-              <p>{{name}}</p>
+              <p>{{Selectedstudent.nom}}</p>
             </div>
             <div>
               <strong>Last Name</strong>
-              <p>{{lastName}}</p>
+              <p>{{Selectedstudent.prenom}}</p>
             </div>
-            <div>
-              <strong>Diplome</strong>
-              <p>{{diplome|timeAgo}}</p>
-            </div>
+           
             <div>
               <strong>Age</strong>
-              <p>{{age}}</p>
+              <p>{{Selectedstudent.dateNaissance|timeAgo}}</p>
             </div>
           </div>
           <div class="card-footer">
             <div class="btn-group d-flex">
-              <button class="btn btn-primary w-100">Profile</button>
-              <button class="btn btn-success w-100">Edit</button>
+              <button routerLink="/profile/{{ Selectedstudent.id }}" class="btn btn-primary w-100">Profile</button>
+              <button class="btn btn-danger w-100">Delete</button>
             </div>
           </div>
         </div>

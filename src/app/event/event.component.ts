@@ -27,7 +27,6 @@ export class EventComponent implements OnInit {
 
   ngOnInit() {
     this.getEvents();
-    this.getCalendarEvents();
     setTimeout(() => {
       $('#calendar').fullCalendar({
         header: {
@@ -63,22 +62,26 @@ export class EventComponent implements OnInit {
 
 
   getEvents() {
-    this.events = this.eventService.getEvents();
+    this.eventService.getEvents().subscribe(events => {
+      this.events = events;
+      for (let event of this.events) {
+        this.calendarEvents.push({title: event.nom, start: event.dateEvt, color: "#019efb"});
+      }
+    });
 
 
-  }
-
-  getCalendarEvents() {
-    this.calendarEvents = this.eventService.calendarEvent();
   }
 
   addEvent() {
     let event = {
-      id: 4,
-      dateEvt: this.eventForm.get("date").value,
+      dateEvt: new Date(this.eventForm.get("date").value),
       lieu: this.eventForm.get("lieu").value,
       nom: this.eventForm.get("nom").value
     };
-    this.eventService.addEvent(event);
+    // console.log(new Date(event.dateEvt).getFullYear());
+    event.dateEvt = new Date(event.dateEvt.getFullYear() +"-"+ event.dateEvt.getMonth() +"-"+ event.dateEvt.getDay());
+    this.eventService.addEvent(event).subscribe(response => {
+      console.log(response);
+    });
   }
 }
