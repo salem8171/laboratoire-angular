@@ -1,4 +1,7 @@
 import {Injectable} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+const URL = "http://localhost:8090/api/publication";
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +14,22 @@ export class PostService {
     {id: 3, dateApparition: "2019-12-16", lien: "lien", sourcePdf: "post3.pdf", type: "poster"}
   ]
 
-  constructor() {
+  constructor(private http: HttpClient) {
+  }
+
+  addPost(post) {
+    return this.http.post(URL + "/add", post);
   }
 
   getPosts() {
-    return this.posts;
+    return this.http.get(URL + "/all");
+  }
+
+  deletePost(id: Number) {
+    return this.http.delete(URL + "/delete/" + id);
+  }
+
+  getPostsByAuthorId(id: Number) {
+    return this.http.get(URL + "/all/auteur/" + id);
   }
 }

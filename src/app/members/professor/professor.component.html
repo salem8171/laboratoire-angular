@@ -56,7 +56,6 @@
               <strong>Last Name</strong>
               <p>{{Selectedprofessor.prenom}}</p>
             </div>
-           
             <div>
               <strong>Age</strong>
               <p>{{Selectedprofessor.dateNaissance|timeAgo}}</p>
@@ -64,8 +63,8 @@
           </div>
           <div class="card-footer">
             <div class="btn-group d-flex">
-              <button class="btn btn-primary w-100">Profile</button>
-              <button class="btn btn-success w-100">Edit</button>
+              <button routerLink="/profile/{{ Selectedprofessor.id }}"  class="btn btn-primary w-100">Profile</button>
+              <button class="btn btn-danger w-100">Delete</button>
             </div>
           </div>
         </div>

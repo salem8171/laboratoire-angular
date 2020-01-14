@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import { PostService } from '../services/post.service';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
   selector: 'app-add-post',
@@ -10,14 +12,15 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 export class AddPostComponent implements OnInit {
   post: FormGroup;
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<AddPostComponent>) {
+  constructor(private fb: FormBuilder,
+    private dialogRef: MatDialogRef<AddPostComponent>,
+    private postService: PostService,
+    private tokenService: TokenStorageService) {
     this.post = this.fb.group({
-      dateApparition: Date,
+      date: Date,
       lien: String,
-      source: String,
+      // source: String,
       type: String
-
-
     });
   }
 
@@ -31,6 +34,7 @@ export class AddPostComponent implements OnInit {
   }
 
   add() {
-
+    this.post.value.idAuteur = this.tokenService.getUser().id;
+    this.postService.addPost(this.post.value).subscribe();
   }
 }
