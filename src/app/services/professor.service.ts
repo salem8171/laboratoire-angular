@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Professor } from '../models/professor';
+import { HttpClient } from '@angular/common/http';
 
+const URL="http://localhost:8090/api/professor";
 @Injectable({
   providedIn: 'root'
 })
 export class ProfessorService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
   private professors:Professor[]=[
 
     { cin:"11081155",
@@ -58,9 +60,9 @@ export class ProfessorService {
   
   
   ];
-  public getAllProfessors():Professor[]
+  public getAllProfessors()
   {
-    return this.professors;
+    return this.http.get(URL+'/all');
   
   }
   

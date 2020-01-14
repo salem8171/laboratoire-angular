@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 const AUTH_API = 'http://localhost:8090/api/auth/';
@@ -23,13 +23,17 @@ export class AuthService {
     }, httpOptions);
   }
 
-  register(user): Observable<any> {
+  
+  register(user,photo): Observable<any> {
+    
+    console.log(photo);
     return this.http.post(AUTH_API + 'signup', {
-      cin:user.cin,
-      nom: user.nom,
-      prenom:user.prenom,
+      cin:user.CIN,
+      nom: user.FirstName,
+      prenom:user.LastName,
       email: user.email,
-      dateNaissance:new Date(user.dateNais.year+"-"+user.dateNais.month+"-"+user.dateNais.day),
+      photo:photo.picByte,
+      dateNaissance:new Date(user.DateNais.year+"-"+user.DateNais.month+"-"+user.DateNais.day),
       role:user.role,
       password: user.password
     }, httpOptions);
@@ -37,5 +41,10 @@ export class AuthService {
   getUserDetail(email)
   {
     return this.http.get(API_URL_USER+'/search/email?email='+email);
+  }
+
+  upload(photo)
+  {
+    return this.http.post(AUTH_API+'upload',photo);
   }
 }
