@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {EventService} from "../services/event.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
-
+import { Component, OnInit } from '@angular/core';
+import { EventService } from "../services/event.service";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { TokenStorageService } from '../services/token-storage.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 declare var $: any;
 
 @Component({
@@ -14,8 +15,10 @@ export class EventComponent implements OnInit {
   calendarEvents = [];
   title = 'easyfullcalendar';
   eventForm: FormGroup;
+  roleAdmin: boolean = false;
 
-  constructor(private eventService: EventService, private formBuilder: FormBuilder) {
+  constructor(private eventService: EventService, private formBuilder: FormBuilder,
+    private token: TokenStorageService) {
     this.eventForm = formBuilder.group(
       {
         date: Date,
@@ -26,6 +29,9 @@ export class EventComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.token.getUser() != null) {
+      this.roleAdmin = this.token.getUser().role.roleName == 'ROLE_ADMIN';
+    }
     this.getEvents();
     setTimeout(() => {
       $("#calendar").fullCalendar({
@@ -65,7 +71,7 @@ export class EventComponent implements OnInit {
     this.eventService.getEvents().subscribe(events => {
       this.events = events;
       for (let event of this.events) {
-        this.calendarEvents.push({title: event.nom, start: event.dateEvt, color: "#019efb"});
+        this.calendarEvents.push({ title: event.nom, start: event.dateEVT, color: "#019efb" });
       }
     });
 
@@ -78,10 +84,39 @@ export class EventComponent implements OnInit {
       lieu: this.eventForm.get("lieu").value,
       nom: this.eventForm.get("nom").value
     };
-    // console.log(new Date(event.dateEvt).getFullYear());
-    event.dateEvt = new Date(event.dateEvt.getFullYear() +"-"+ event.dateEvt.getMonth() +"-"+ event.dateEvt.getDay());
-    this.eventService.addEvent(event).subscribe(response => {
+
+    event.dateEvt = new Date(event.dateEvt.getFullYear() + "-" + event.dateEvt.getMonth() + "-" + event.dateEvt.getDay());
+    this.eventService.addEvent(this.eventForm.value).subscribe(response => {
       console.log(response);
+    });
+    window.location.reload();
+  }
+
+  delete(id) {
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this Event!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value) {
+        this.eventService.deleteEvent(id).subscribe();
+        window.location.reload();
+        Swal.fire(
+          'Deleted!',
+          'Event has been deleted.',
+          'success'
+        );
+
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Your Event is safe :)',
+        );
+      }
     });
   }
 }

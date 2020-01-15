@@ -49,7 +49,7 @@ login()
           this.goHome();
         }
       )
-      
+      this.authService.setIsLoggedIn();
     },
     err => {
       this.errorMessage = err.error.message;

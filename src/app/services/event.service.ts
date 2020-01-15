@@ -26,7 +26,7 @@ export class EventService {
   }
 
   deleteEvent(id: Number) {
-    this.http.delete(URL + "/delete/" + id);
+    return this.http.delete(URL + "/delete/" + id);
   }
 
   // calendarEvent() {

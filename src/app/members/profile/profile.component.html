@@ -12,7 +12,7 @@
     
                     <div class="card-body">
                         <div>
-                            <strong>Name</strong>
+                            <strong>First Name</strong>
                             <p>{{ member.nom }}</p>
                         </div>
                         <div>
@@ -25,12 +25,12 @@
                         </div> -->
                         <div>
                             <strong>Age</strong>
-                            <p>{{ member.dateNaissance | timeAgo }}</p>
+                            <p>{{ member.dateNaissance | timeAgo|slice:0:2 }}</p>
                         </div>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer" *ngIf="idCurrentLoggedUser==id">
                         <div class="btn-group d-flex">
-                            <button class="btn btn-primary w-100">Profile</button>
+                            
                             <button class="btn btn-success w-100">Edit</button>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
     <div class="col-md-5">
         <tabset>
             <tab heading="Publication" id="tab1">
-                <table class="table">
+                <table class="table" >
                     <tr>
                         <th>Type</th>
                         <th>Lien</th>
@@ -59,8 +59,21 @@
                     </tr>
                 </table>
             </tab>
-            <tab heading="">Interests</tab>
-            <tab heading="Others">Others</tab>
+            
+            <tab heading="SupervisedStudents" *ngIf="!isStudent">
+                <table class="table" >
+                    <tr>
+                        <th>LastName</th>
+                        <th>FirstName</th>
+                        
+                    </tr>
+                    <tr *ngFor="let student of SupervisedStudents | async">
+                        <td>{{ student.nom }}</td>
+                        <td>{{ student.prenom }}</td>
+                        
+                    </tr>
+                </table>
+            </tab>
         </tabset>
     </div>
 </div>

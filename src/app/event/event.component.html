@@ -15,9 +15,10 @@
           <tbody>
           <tr *ngFor="let event of events">
             <td>{{event.id}}</td>
-            <td>{{event.dateEvt|date:'yyyy-MM-dd'}}</td>
+            <td>{{event.dateEVT|date:'yyyy-MM-dd'}}</td>
             <td>{{event.lieu}}</td>
             <td>{{event.nom}}</td>
+            <td><button class="btn btn-danger btn-sm"(click)="delete(event.id)" *ngIf="roleAdmin">Delete</button></td>
           </tr>
 
           </tbody>

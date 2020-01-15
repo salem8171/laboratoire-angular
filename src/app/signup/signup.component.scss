@@ -45,3 +45,20 @@
 
                           .checkbox input:checked ~ .input-span:after, .radio input:checked ~ .input-span:after {
                             display: block; }
+
+                            .file-input {
+                              position: relative; }
+                              .btn-primary {
+                                color: #fff;
+                                background-color: #5C6BC0;
+                                border-color: #5C6BC0; }
+                                .btn-icon:not(.btn-labeled) {
+                                  display: table;
+                                  margin: 0 auto; }
+                                  .file-input input {
+                                    position: absolute;
+                                    left: 0;
+                                    right: 0;
+                                    top: 0;
+                                    bottom: 0;
+                                    opacity: 0; }

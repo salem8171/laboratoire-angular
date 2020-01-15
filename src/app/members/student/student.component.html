@@ -5,7 +5,7 @@
         <table mat-table [dataSource]="ELEMENT_DATA | async" class="mat-elevation-z2" matSort>
           <!-- Position Column -->
           <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name</th>
             <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
           </ng-container>
 
@@ -35,6 +35,7 @@
 
             </td>
           </ng-container>
+         
 
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -52,7 +53,7 @@
 
           <div class="card-body">
             <div>
-              <strong>Name</strong>
+              <strong>First Name</strong>
               <p>{{Selectedstudent.nom}}</p>
             </div>
             <div>
@@ -62,13 +63,13 @@
            
             <div>
               <strong>Age</strong>
-              <p>{{Selectedstudent.dateNaissance|timeAgo}}</p>
+              <p>{{Selectedstudent.dateNaissance|timeAgo|slice:0:2}}</p>
             </div>
           </div>
           <div class="card-footer">
             <div class="btn-group d-flex">
               <button routerLink="/profile/{{ Selectedstudent.id }}" class="btn btn-primary w-100">Profile</button>
-              <button class="btn btn-danger w-100">Delete</button>
+              <button class="btn btn-danger w-100" (click)="delete(Selectedstudent.id)" *ngIf="roleAdmin&& Selectedstudent.id!=token.getUser().id">Delete</button>
             </div>
           </div>
         </div>
