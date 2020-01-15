@@ -1,6 +1,6 @@
 <div class="row pt-5 mt-3 mb-5 justify-content-center">
   <div class="col-md-11 col-xl-9 p-2">
-    <button class="btn btn-danger btn-circle" (click)="addPost()">
+    <button class="btn btn-danger btn-circle" (click)="addPost()" *ngIf="roleStudent||roleProfessor||roleAdmin">
      <i class="la la-plus"></i>
     </button>
     <div class="card my-2" *ngFor="let post of posts | async">
@@ -10,7 +10,7 @@
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col-6">
-            <h5 class="card-title">Special title treatment</h5>
+            <h5 class="card-title"></h5>
             <p><i class="fa fa-link"><a href="{{post.lien}}" class="ml-1">{{post.lien}}</a></i></p>
             <!-- <p><i class="fa fa-file-pdf-o"> <a [href]="post.sourcePdf" class="ml-1">{{post.sourcePdf}}</a></i></p> -->
             <p><i class="fa fa-calendar"> {{post.dateApparition}}</i></p>

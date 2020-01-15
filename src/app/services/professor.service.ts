@@ -66,5 +66,11 @@ export class ProfessorService {
   
   }
   
-  
+  public deleteProfessorById(id)
+  {
+    return this.http.delete(URL+'/delete/'+id);
+  }
+  public getSupervisedStudents(id){
+    return this.http.get(URL+"/"+id+"/students");
+  }
   }

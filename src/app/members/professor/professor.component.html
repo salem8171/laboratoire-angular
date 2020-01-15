@@ -1,11 +1,11 @@
 <div class="row pt-5 mt-3 mb-5 justify-content-center">
   <div class="col-md-12 col-xl-11 py-2">
     <div class="row">
-      <div class="col-md-7 mr-2">
+      <div class="col-md-8 mr-2">
         <table mat-table [dataSource]="ELEMENT_DATA" class="mat-elevation-z2" matSort>
           <!-- Position Column -->
           <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
             <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
           </ng-container>
 
@@ -28,10 +28,22 @@
           </ng-container>
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
-            <td mat-cell *matCellDef="let element"> <button class="btn btn-secondary btn-sm" (click)="preview(element)"><i
-                  class="fa fa-arrow-circle-o-right"></i> Details</button></td>
+            <td mat-cell *matCellDef="let element"> <button class="btn btn-secondary btn-sm"
+                (click)="preview(element)"> Details</button></td>
           </ng-container>
+          <ng-container matColumnDef="action" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header ></th>
+            <td mat-cell *matCellDef="let element" >
+              <button class="btn btn-secondary btn-sm btn-block" (click)="addSupervisor(element.id)" *ngIf="roleStudent 
+              && element.id != idSupervised"
+              [disabled]="disable"> Add Supervisor
+              </button>
+              <button class="btn btn-success btn-sm btn-block"  *ngIf="roleStudent && element.id == idSupervised"
+              > Added
+              </button>
 
+            </td>
+          </ng-container>
 
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -42,14 +54,14 @@
         <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
       </div>
 
-      <div class="col-md-4" *ngIf="Selectedprofessor">
+      <div class="col-md-3" *ngIf="Selectedprofessor">
         <div class="card p-2">
           <img class="align-self-center img-thumbnail rounded-circle" width="200" height="200"
-               src="data:image/jpeg;base64,{{Selectedprofessor.photo}}" >
+            src="data:image/jpeg;base64,{{Selectedprofessor.photo}}">
 
           <div class="card-body">
             <div>
-              <strong>Name</strong>
+              <strong>First Name</strong>
               <p>{{Selectedprofessor.nom}}</p>
             </div>
             <div>
@@ -58,13 +70,14 @@
             </div>
             <div>
               <strong>Age</strong>
-              <p>{{Selectedprofessor.dateNaissance|timeAgo}}</p>
+              <p>{{Selectedprofessor.dateNaissance|timeAgo|slice:0:2}}</p>
             </div>
           </div>
           <div class="card-footer">
             <div class="btn-group d-flex">
-              <button routerLink="/profile/{{ Selectedprofessor.id }}"  class="btn btn-primary w-100">Profile</button>
-              <button class="btn btn-danger w-100">Delete</button>
+              <button routerLink="/profile/{{ Selectedprofessor.id }}" class="btn btn-primary w-100">Profile</button>
+              <button class="btn btn-danger w-100" (click)="delete(Selectedprofessor.id)"
+                *ngIf="roleAdmin && Selectedprofessor.id!=token.getUser().id">Delete</button>
             </div>
           </div>
         </div>

@@ -36,5 +36,7 @@ export class AddPostComponent implements OnInit {
   add() {
     this.post.value.idAuteur = this.tokenService.getUser().id;
     this.postService.addPost(this.post.value).subscribe();
+    this.onClose();
+    window.location.reload();
   }
 }

@@ -58,9 +58,11 @@
                 </div>
           </div>
           <div class="form-group mb-4">
-            <input class="form-control form-control-line" type="file" name="photo" (change)="onFileChanged($event)"
-            formControlName="photo">
-            
+            <label class="btn btn-primary file-input mr-2">
+              <span class="btn-icon"><i class="la la-cloud-upload"></i>Browse photo</span>
+              <input class="form-control form-control-line" type="file" name="photo" (change)="onFileChanged($event)"
+              formControlName="photo">
+          </label>
         </div>
           <div class="form-group mb-4">
               <input class="form-control form-control-line" type="password" name="password" placeholder="Password"
